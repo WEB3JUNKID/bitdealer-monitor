@@ -1,9 +1,8 @@
+const axios = require('axios');
 
-import axios from 'axios';
+const BEARER_TOKEN = 'YOUR_BEARER_TOKEN_HERE';
 
-const BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAPJd4wEAAAAAgPtm1NZ0viNLUtWD+VFKKAfnQAU=xpqCt9QUm0l0pJS7HzgMaBBltRVhAyKKAYZodlfer75imj6m98';
-
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   try {
     const query = '@bitdealernet';
     const maxResults = req.query.max_results || 10;
@@ -16,7 +15,7 @@ export default async function handler(req, res) {
 
     res.status(200).json(response.data);
   } catch (err) {
-    console.error('Vercel /tweets error:', err?.response?.data || err.message);
-    res.status(err?.response?.status || 500).json({ error: err?.response?.data || err.message });
+    console.error('Vercel /tweets error:', err.response?.data || err.message);
+    res.status(err.response?.status || 500).json({ error: err.response?.data || err.message });
   }
-}
+};
